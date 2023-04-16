@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./Images/video-5-48.png">
+    <script defer src="./app.js"></script>
+    <title>Movie Hub</title>
+</head>
+<body>
+   <header>
+    <div style="display: flex;">
+        <img style="margin-right:6px;" src="./Images/video-5-48.png" alt="">
+        <h1>Movie Hub</h1>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <button id="darkMode">
+            <img id="darkModeIcon" src="./Images/moon.png" alt="">
+        </button>
+        <p>Dark Mode</p>
+    </div>
+   </header> 
+   <main>
+    <section id="sec-1">
+        <h2>Search Movie</h2>
+        <div id="container">
+            <div>
+                <label for="genre">GENRE</label>
+                <select class="select-item" name="genre" id="genre">
+                    <option value="">All</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Action">Action</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="Family">Family</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Music">Music</option>
+                    <option value="War">War</option>
+                    <option value="History">History</option>
+                    <option value="Fantacy">Fantacy</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Mystery">Mystery</option>
+                </select>
+            </div>
+            <div>
+                <label for="year">YEAR</label>
+                <select class="select-item" name="year" id="year">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div>
+                <label for="language">LANGUAGE</label>
+                <select class="select-item" name="language" id="language">
+                    <option value="">All</option>
+                </select>
+            </div>
+        </div>
+        <div id="container-2">
+            <label for="rating">RATING</label>
+            <select class="select-item-2" name="rating" id="rating">
+                <option value="">All</option>
+            </select>
+
+        </div>
+    </section>
+    <section id="sec-2">
+        <div id="head">
+            <div id="rank_movie">
+                <div class="detail-box">
+                    <span>RANK</span>
+                    
+                </div>
+                <div class="detail-box name-box">
+                <span>MOVIE</span>
+              
+              
+                </div>
+            </div>
+            <div class="detail-box">
+                <span>YEAR</span>
+                
+            </div>
+            
+        </div>
+        <div id="body-rank">
+          <!-- <div class="moive-box"> -->
+            <div id="inner-box">
+                <div id="num-container"></div>
+                <div id="grid-container">
+                    <div id="img-container"></div>
+                    <div id="detail-container">
+                        <!-- <h3 class="movie-title">Movie title</h3> -->
+                    </div>
+                </div>
+            </div>
+            <div id="year-container"></div>     
+          <!-- </div> -->
+        </div>
+
+    </section>
+   </main>
+</body>
+</html>
