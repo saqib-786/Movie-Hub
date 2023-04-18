@@ -16,6 +16,8 @@
     justify-content: space-between;
     padding: 0px 3%;
     color: #212121;
+    box-shadow: 0px 2px 5px gray;
+
 }
 .headerDark{
     display: flex;
@@ -25,6 +27,7 @@
     height: 80px;
     background-color: #212121;
     color: whitesmoke;
+    box-shadow: none;
 
 }
 #sec-1{
@@ -138,6 +141,15 @@ label{
     color: #2979ff;
     margin-left: 10px;
     margin-bottom: 10px;
+}
+.movie-title > a{
+    color: #2979ff;
+    text-decoration: none;
+}
+.movie-title-dark{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: white;
 }
 #num-container{
     width: 1000px;

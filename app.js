@@ -7,6 +7,16 @@ let modeText = document.querySelector('#modeText');
 let header = document.querySelector('header');
 let select = document.querySelectorAll('select');
 let logo = document.querySelector('#logo');
+let movieTitle = document.querySelectorAll('movie-title');
+
+movieTitle.forEach((item)=>{
+    // if(body.className === 'darkMode'){
+    //     item.classList.add('movie-title-dark');
+    // }else{
+    //     item.classList.add('movie-title');
+    // }
+    console.log(item.classList);
+})
 
 darkMode.addEventListener('click',()=>{
     if(darkModeIcon.getAttribute('src') == '/Images/sun.png'){
@@ -37,6 +47,7 @@ darkMode.addEventListener('click',()=>{
         logo.setAttribute('src','./Images/logo light.png');
     }
 
+    
    
     // darkModeIcon.src = './Images/sun.png'
  
@@ -44,6 +55,10 @@ darkMode.addEventListener('click',()=>{
     //     item.style.backgroundColor = '#607d8b'
     // })
 });
+
+
+        
+
 
 (async function(){
     let response = await fetch('./data.json');
@@ -113,7 +128,7 @@ darkMode.addEventListener('click',()=>{
             <div id="grid-container">
                 <div id="img-container"><img src="https://image.tmdb.org/t/p/w45${item.poster_path}" /></div>
                 <div id="detail-container">
-                    <h3 class="movie-title">${item.title}</h3>
+                    <h3 class="movie-title"><a target="_blank" href="${item.homepage}">${item.title}</a></h3>
                     <span id="certification">${item.certification}</span>
                      <span class="duration">${item.genres}</span>
                      <span class="duration">${Math.floor(item.runtime / 60)}h ${item.runtime % 60}m</span>
