@@ -3,13 +3,42 @@ let body = document.querySelector('body');
 body.classList.add('lightMode');
 let selectItems = document.querySelectorAll('.select-item');
 let darkModeIcon = document.querySelector('#darkModeIcon');
-
+let modeText = document.querySelector('#modeText');
+let header = document.querySelector('header');
+let select = document.querySelectorAll('select');
+let logo = document.querySelector('#logo');
 
 darkMode.addEventListener('click',()=>{
+    if(darkModeIcon.getAttribute('src') == '/Images/sun.png'){
+        darkModeIcon.setAttribute('src','/Images/moon.png')  ;
+    }else{
+        darkModeIcon.setAttribute('src','/Images/sun.png')  ;
+    };
     body.classList.toggle('darkMode');
-   if(darkModeIcon.src === './Images/moon.png'){
-    darkModeIcon.src = './Images/sun.png';
-   }
+
+    if(modeText.innerText == 'Dark Mode'){
+        modeText.innerText = 'Light Mode';
+    }else{
+        modeText.innerText = 'Dark Mode';
+    }
+    if(header.className === 'headerLight'){
+        header.classList.add('headerDark');
+    }else{
+        header.classList.remove('headerDark');
+    };
+
+    select.forEach((selectItem)=>{
+        selectItem.classList.toggle('selectDark');
+    });
+
+    if(logo.getAttribute('src') == './Images/logo light.png'){
+        logo.setAttribute('src','./Images/logo dark.png');
+    }else{
+        logo.setAttribute('src','./Images/logo light.png');
+    }
+
+   
+    // darkModeIcon.src = './Images/sun.png'
  
     // selectItems.forEach((item)=>{
     //     item.style.backgroundColor = '#607d8b'
@@ -67,106 +96,80 @@ darkMode.addEventListener('click',()=>{
  
    let genres = document.getElementById('genre');
    let year = document.getElementById('year');
-   let lang = document.getElementById('language');
+//    let lang = document.getElementById('language');
    let rate = document.getElementById('rating');
    let rankContainer = document.getElementById('body-rank');
-   let imgContainer = document.getElementById('img-container');
-   let yearContainer = document.getElementById('year-container');
-//    let detailContainer = document.getElementById('detail-container')
+
    let num = 1;
-
-   genres.addEventListener('change',()=>{
-    data.forEach((names)=>{
-        
+   function loadMovieData(result){
+    
+    result.filter((item)=>{
+        // rankContainer.innerHTML = '';
         let div = document.createElement('div');
-        
-        
-        div.setAttribute('class','moive-box')
-        let h3 = document.createElement('h3');
-        let p = document.createElement('p');
-        h3.setAttribute('class','movie-title');
-        let para = document.createElement('p');
-        // let paraText = document.createTextNode('');
-        // para.appendChild(paraText)
-
-
-        
-        if(genres.value === names.genres){
-          
-            div.innerHTML = `
+       div.setAttribute('class','moive-box');
+        div.innerHTML = `
             <div id="inner-box">
             <div id="num-container">${num++}</div>
             <div id="grid-container">
-                <div id="img-container"><img src="https://image.tmdb.org/t/p/w45${names.poster_path}" /></div>
+                <div id="img-container"><img src="https://image.tmdb.org/t/p/w45${item.poster_path}" /></div>
                 <div id="detail-container">
-                    <h3 class="movie-title">${names.title}</h3>
-                    <span id="certification">${names.certification}</span>
-                     <span class="duration">${names.genres}</span>
-                     <span class="duration">${Math.floor(names.runtime / 60)}h ${names.runtime % 60}m</span>
+                    <h3 class="movie-title">${item.title}</h3>
+                    <span id="certification">${item.certification}</span>
+                     <span class="duration">${item.genres}</span>
+                     <span class="duration">${Math.floor(item.runtime / 60)}h ${item.runtime % 60}m</span>
                 </div>
             </div>
         </div>
-        <div id="year-container">${names.release_date.slice(0,4)}</div>   
+        <div id="year-container">${item.release_date.slice(0,4)}</div>   
             `
-            rankContainer.appendChild(div);
-            // div.setAttribute('class','movie-box')
-            // innerBox.appendChild(grid);
-            // grid.appendChild(imgContainer);
-            // grid.appendChild(detailContainer);
-            
-            // div.appendChild(innerBox);
+        rankContainer.appendChild(div);
 
-            // para.innerText = num++;
-            // div.appendChild(numContainer.appendChild(para));
-            // grid.appendChild(imgContainer);
-            // grid.appendChild(detailContainer);
-            // h3.innerText = names.title;
+    }); 
 
-            // div.appendChild(grid.appendChild(detailContainer.appendChild(h3)));
-            
-            // let year = names.release_date.slice(0,4);
-            // let text = document.createTextNode(year);
-            
-            // numContainer.innerHTML = p
-            
-            
-            // yearContainer.appendChild(p);
-            // div.appendChild(yearContainer.appendChild(p))
-            // rankContainer.appendChild(div);
-            
+   };
 
-            
-        }
-    })
+   genres.addEventListener('change',()=>{
+    rankContainer.innerHTML = '';
+    let query = genres.value;
+    let result = data.filter((e)=>{
+        return e.genres.includes(query);
+    });
+    loadMovieData(result)
    })
 
 
 
-
-
-   const movieDetails = [];
-   genres.addEventListener('change',()=>{
-    movieDetails.push(genres.value);
-   console.log(movieDetails)
-
-   });
-
    year.addEventListener('change',()=>{
-    movieDetails.push(year.value);
-    console.log(movieDetails)
+    rankContainer.innerHTML = '';
+    let query = year.value;
+   let result = data.filter((val)=>{
+        return val.release_date.includes(query) 
+    });
+    loadMovieData(result)
    })
 
    let Lang  = document.getElementById('language')
    Lang.addEventListener('change',()=>{
-    movieDetails.push(lang.value);
-    console.log(movieDetails)
+    rankContainer.innerHTML = '';
+   let query = Lang.value;
+   let result = data.filter((val)=>{
+    return val.original_language.includes(query)
+   });
+   loadMovieData(result)
 
    })
 
    rate.addEventListener('change',()=>{
-    movieDetails.push(rate.value);
+    rankContainer.innerHTML  = '';
+    let query = rate.value;
+    let result = data.filter((value)=>{
+        return value.vote_average.toString() === query;
+    });
+  
+    loadMovieData(result);
    
    })
 
 
 })()
+
