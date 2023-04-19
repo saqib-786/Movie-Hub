@@ -41,6 +41,7 @@
     display: flex;
     padding: 20px 10%;
     justify-content: space-between;
+    
 }
 
 #container div{
@@ -164,7 +165,7 @@ label{
     
 }
 #detail-container{
-    width: 700px;
+    min-width: 500px;
     height: auto;
     padding: 10px;
     /* margin: 5px 0px; */
@@ -193,4 +194,19 @@ label{
     background-color: #212121;
     border: 1px solid gray;
     color: white;
+}
+
+@media only screen and (max-width:425px){
+    #container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    #container div{
+        margin-top:10px; 
+    }
+    #certification,.duration{
+        /* display: block; */
+    }
+
 }

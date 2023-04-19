@@ -111,9 +111,9 @@ darkMode.addEventListener('click',()=>{
  
    let genres = document.getElementById('genre');
    let year = document.getElementById('year');
-//    let lang = document.getElementById('language');
    let rate = document.getElementById('rating');
    let rankContainer = document.getElementById('body-rank');
+   let result = undefined;
 
    let num = 1;
    function loadMovieData(result){
@@ -146,7 +146,7 @@ darkMode.addEventListener('click',()=>{
    genres.addEventListener('change',()=>{
     rankContainer.innerHTML = '';
     let query = genres.value;
-    let result = data.filter((e)=>{
+     result = data.filter((e)=>{
         return e.genres.includes(query);
     });
     loadMovieData(result)
@@ -160,6 +160,7 @@ darkMode.addEventListener('click',()=>{
    let result = data.filter((val)=>{
         return val.release_date.includes(query) 
     });
+  
     loadMovieData(result)
    })
 
